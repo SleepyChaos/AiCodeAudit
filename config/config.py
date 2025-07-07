@@ -1,8 +1,28 @@
 from loguru import logger
 import os
 import yaml
-
+from pydantic import BaseModel
 from models import Config
+# config.py (或 models.py)
+from pydantic import BaseModel
+from typing import List # 确保导入List
+
+class OpenAIConfig(BaseModel): # 可以改名为 LLMConfig 或保留
+    base_url: str
+    api_key: str
+    model: str
+    max_per_tokens: int
+
+class ProjectConfig(BaseModel):
+    source_file_ext: List[str]
+    config_file_ext: List[str]
+    exclude_dir: List[str]
+    exclude_max_file_size: int
+
+class Config(BaseModel):
+    openai: OpenAIConfig # 可以保留或删除，取决于你是否还想用OpenAI
+    project: ProjectConfig
+    deepseek: OpenAIConfig # <-- **这一行是必须添加的！**
 
 def load_yaml_as_pydantic(file_path: str, model_cls:Config) -> Config:
     with open(file_path, 'r', encoding='utf-8') as file:

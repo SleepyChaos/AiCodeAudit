@@ -1,8 +1,8 @@
-openai:
-  api_key: sk-BKR5huAmRgTd1qjwP6AWocZXvmgTjJ2UI46uiHi104YT4Jnh
-  base_url: https://api.openai-proxy.org/v1
-  max_per_tokens: 40000
-  model: gpt-4o-mini
+deepseek:
+  api_key: sk-b41ef9428d5740979ecc433a539b0fd9 # 替换为你的 DeepSeek API Key
+  base_url: https://api.deepseek.com # 推荐使用这个，或者 https://api.deepseek.com/v1 也可以
+  model: deepseek-chat # 或者 deepseek-reasoner，根据你需要哪个模型
+  max_per_tokens: 40000 # 这个值你可以根据DeepSeek的实际限制或你自己的需求来设置
 project:
   config_file_ext:
   - .yaml
