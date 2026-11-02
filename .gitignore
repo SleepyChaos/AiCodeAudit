@@ -1,0 +1,17 @@
+# Local credentials and environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Python / editor caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.DS_Store
+
+# Generated audit reports and local logs
+/output/
+*.log

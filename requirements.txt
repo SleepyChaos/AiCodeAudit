@@ -6,4 +6,4 @@ openai
 tiktoken
 networkx
 matplotlib
-pydantic
+tqdm
