@@ -5,7 +5,6 @@ from typing import List
 import asyncio
 
 import networkx as nx
-from accelerate.commands.config.update import description
 from loguru import logger
 from tqdm import tqdm
 
@@ -23,7 +22,7 @@ def init():
     logger.add(sink="app.log", rotation="50 MB", format="{time} | {level} | {message}")
     #初始化参数配置
     logger.info("加载配置文件config.yaml")
-    logger.info(C.dict())
+    logger.info("配置已加载（不输出模型凭据）")
     #判断执行模式
     logger.info("当前命令行模式:"+str(is_cmd_mode()))
     # 创建ArgumentParser对象

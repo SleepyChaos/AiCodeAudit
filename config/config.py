@@ -7,13 +7,22 @@ from models import Config
 def load_yaml_as_pydantic(file_path: str, model_cls:Config) -> Config:
     with open(file_path, 'r', encoding='utf-8') as file:
         data: dict = yaml.safe_load(file)
+    openai_config = data.setdefault('openai', {})
+    for field, env_name in (
+        ('api_key', 'OPENAI_API_KEY'),
+        ('base_url', 'OPENAI_BASE_URL'),
+        ('model', 'OPENAI_MODEL'),
+    ):
+        value = os.getenv(env_name)
+        if value is not None:
+            openai_config[field] = value
     return model_cls(**data)
 def create_default_config(file_path):
     """创建默认配置文件"""
     default_config = {
         'openai': {
             'base_url': 'https://api.openai-proxy.org/v1',
-            'api_key': "sk-BKR5huAmRgTd1qjwP6AWocZXvmgTjJ2UI46uiHi104YT4Jnh",
+            'api_key': '',
             'model': 'gpt-4o-mini',
             'max_per_tokens': 4096
         },
